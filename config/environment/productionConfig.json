@@ -1,0 +1,31 @@
+{
+  "datasource": {
+    "mongodb": {
+      "dbURL": "mongodb://localhost",
+      "databaseName": "weather",
+      "port": 27017,
+      "username": "admin",
+      "password": "admin"
+    }
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "username": null,
+    "password": null
+  },
+  "apiConfig": {
+    "protocol": "http",
+    "host": "localhost:3000",
+    "prefix": "/api",
+    "version": "/v1"
+  },
+  "jwt": {
+    "secret": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm9maWxlSW1hZ2UiOiJo"
+  },
+  "openWeatherMap": {
+    "URL": "http://api.openweathermap.org/data/2.5/weather",
+    "APPID": "315bfe53b9e8862a5f53ff6ec535d542",
+    "example": ["lat=35&lon=139&APPID={APPID}", "q=London,uk&APPID={APPID}", "zip=94040,us&APPID={APPID}"]
+  }
+}
