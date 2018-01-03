@@ -51,10 +51,16 @@ const verifyOtp = (req) => {
 
 }
 
+const logout = (req) => {
+  return Promise.resolve();
+}
+
+
 const Users = {
   signup,
   signin,
-  verifyOtp
+  verifyOtp,
+  logout
 };
 
 module.exports = Users

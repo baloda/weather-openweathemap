@@ -5,7 +5,7 @@ var {
   Users: usersController
 } = require('./../controllers');
 
-router.post('/signup', function (req, res, next) {
+router.post('/register', function (req, res, next) {
   usersController.signup(req).then(resp => {
     res.send({
       message: 'created',
@@ -20,10 +20,10 @@ router.post('/signup', function (req, res, next) {
   })
 });
 
-router.post('/signin', function (req, res, next) {
+router.post('/login', function (req, res, next) {
   usersController.signin(req).then(resp=>{
     res.send({
-      resp
+      data: resp
     });
   }).catch(err => {
     res.send({
@@ -36,4 +36,19 @@ router.post('/signin', function (req, res, next) {
 router.post('/otp-verify', function (req, res, next) {
   res.send('respond with a resource');
 });
+
+router.post('/logout', function (req, res, next) {
+  usersController.logout(req).then(resp=>{
+    res.send({
+      message: 'logout',
+      code: 200
+    });
+  }).catch(err => {
+    res.send({
+      error: err.message,
+      code: 403
+    });
+  })
+});
+
 module.exports = router;
