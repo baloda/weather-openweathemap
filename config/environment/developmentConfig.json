@@ -25,6 +25,7 @@
   },
   "openWeatherMap": {
     "URL": "http://api.openweathermap.org/data/2.5/weather",
+    "FORECAST": "http://api.openweathermap.org/data/2.5/forecast",
     "APPID": "315bfe53b9e8862a5f53ff6ec535d542",
     "example": ["lat=35&lon=139&APPID={APPID}", "q=London,uk&APPID={APPID}", "zip=94040,us&APPID={APPID}"]
   }
