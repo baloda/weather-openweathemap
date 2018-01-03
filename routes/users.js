@@ -13,7 +13,7 @@ router.post('/register', function (req, res, next) {
     });
   }).catch(err => {
     if(err.code===11000) {err.message = 'User already exists'}
-    res.send({
+    res.status((err.code || 403)).send({
       error: err.message,
       code: 403
     });
@@ -26,7 +26,7 @@ router.post('/login', function (req, res, next) {
       data: resp
     });
   }).catch(err => {
-    res.send({
+    res.status((err.code ||403)).send({
       error: err.message,
       code: 403
     });
@@ -44,7 +44,7 @@ router.post('/logout', function (req, res, next) {
       code: 200
     });
   }).catch(err => {
-    res.send({
+    res.status((err.code || 403)).send({
       error: err.message,
       code: 403
     });

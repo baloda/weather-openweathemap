@@ -1,5 +1,10 @@
 require('./config');
 require('./models');
+
+var {
+  AllowedOrigins
+} = require('./middleware');
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -23,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(AllowedOrigins());
 app.use('/', index);
 
 // catch 404 and forward to error handler
