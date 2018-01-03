@@ -12,7 +12,7 @@ router.post('/register', function (req, res, next) {
       code: 202
     });
   }).catch(err => {
-    if(err.code===11000) {err.message = 'User already exists'}
+    if(err.code===11000) {err.code = 403;err.message = 'User already exists'}
     res.status((err.code || 403)).send({
       error: err.message,
       code: 403
