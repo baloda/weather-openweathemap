@@ -13,17 +13,21 @@ const signin = (req) => {
     var {
       body
     } = req;
+    var existingUser = null;
     if(!body.email || !body.password)
       throw Error('Missing parameters');
     return Promise.resolve().then(data=>{
       return usersModel.findOne({email: body.email});
-    }).then(existingUser => {
+    }).then(_existingUser => {
+      existingUser = _existingUser;
       if(!existingUser)
         throw Error('No user found');
-      if(!existingUser.isPasswordValid(existingUser.password)) 
+      return existingUser.isPasswordValid(body.password);
+    }).then(status=>{
+      if(!status) 
         throw Error('Invalid password');
       existingUser = JSON.parse(JSON.stringify(existingUser));
-      
+
       delete existingUser.password;
       var xAccessToken = jwt.sign(existingUser, JWTConfig.secret, { 
         expiresIn: 60 * 60 

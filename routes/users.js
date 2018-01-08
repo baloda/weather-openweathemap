@@ -8,7 +8,7 @@ var {
 router.post('/register', function (req, res, next) {
   usersController.signup(req).then(resp => {
     res.send({
-      message: 'created',
+      message: 'User created successfully',
       code: 202
     });
   }).catch(err => {
