@@ -94,11 +94,8 @@ const post = (req) => {
 
 const getByUserId = (req) => {
   if (!req.params.userId) throw new cError("Missing parameters", 422);
-  req.query.filter = {
-    where: {
-      userId: req.params.userId
-    }
-  }
+  formatQueryFilter(req);
+  req.query.filter.where.userId = req.params.userId;
   return get(req);
 }
 
