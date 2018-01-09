@@ -5,6 +5,9 @@ var {
   CityWeather: CityWeatherController
 } = require('./../controllers');
 
+var {
+  CheckAuthorization
+} = require('./../middleware');
 
 
 router.get('/auto-complete', function (req, res, next) {
@@ -18,7 +21,7 @@ router.get('/auto-complete', function (req, res, next) {
   })
 });
 
-router.get('/:userId', function (req, res, next) {
+router.get('/:userId', CheckAuthorization, function (req, res, next) {
   CityWeatherController.getByUserId(req).then(resp => {
     res.send(resp);
   }).catch(err => {
@@ -32,7 +35,7 @@ router.get('/:userId', function (req, res, next) {
 
 
 
-router.post('/', function (req, res, next) {
+router.post('/', CheckAuthorization, function (req, res, next) {
   CityWeatherController.post(req).then(resp=>{
     console.log(resp);
     res.send(resp);

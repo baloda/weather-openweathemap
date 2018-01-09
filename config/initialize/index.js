@@ -1,4 +1,4 @@
-var redis = require("redis"),client = redis.createClient();
+var client = require('./redis');
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
 
 global.environment = process.env.NODE_ENV;

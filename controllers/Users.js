@@ -32,7 +32,7 @@ const signin = (req) => {
       var xAccessToken = jwt.sign(existingUser, JWTConfig.secret, { 
         expiresIn: 60 * 60 
       });
-
+      rdsClient.set(xAccessToken, existingUser._id, rdsClient.print);
       existingUser.xAccessToken = xAccessToken;
       return existingUser;
     }).catch(err=>{
@@ -56,7 +56,17 @@ const verifyOtp = (req) => {
 }
 
 const logout = (req) => {
-  return Promise.resolve();
+  return new Promise((resolve, reject)=>{
+    var _err = new Error('xAccessToen not found');
+    rdsClient.del(req.headers.xAccessToken,function(err, data){
+      if(err){
+        _err.message = err.message;
+        _err.status = 403;
+        reject(_err);
+      }
+      resolve();
+    })
+  });
 }
 
 

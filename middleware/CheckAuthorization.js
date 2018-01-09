@@ -15,8 +15,14 @@ const CheckAuthorization = (req, res, next) => {
       error.message = "Please retry for login";
       next(error);
     }
-    req.profile = decoded;
-    next();
+    rdsClient.get(req.headers.xAccessToken,function(err, userId){
+      if(err){
+        error.message = "Please retry for login";
+        next(error);
+      }
+      req.profile = decoded;
+      next();
+    })
   })
 }
 
