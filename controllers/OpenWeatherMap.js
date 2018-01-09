@@ -15,7 +15,7 @@ class OpenWeatherMap {
         APPID: CONFIG.APPID
       }
     }
-    Object.assign(options, this.body)
+    Object.assign(options.params, this.body)
     if (this.body.cityId)
       options.params.id = this.body.cityId
     if (this.body.city)
