@@ -79,6 +79,7 @@ const post = (req) => {
     })
     var pktForecast = {
       userId: body.userId,
+      location: body.location,
       cityId: resp.city.id,
       city: resp.city.name,
       country: resp.city.country,

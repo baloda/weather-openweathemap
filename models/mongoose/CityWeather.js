@@ -6,6 +6,9 @@ var schema = new Schema({
     type: Schema.ObjectId,
     required: [true, "User Id is required"]
   },
+  location: {
+    type: String
+  },
   cityId: {
 		type: String,
   },
